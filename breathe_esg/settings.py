@@ -15,7 +15,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key-change-in-pro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com', cast=Csv())
 
 # Application definition
 
@@ -157,9 +157,9 @@ CORS_ALLOW_HEADERS = [
 
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    # Note: SECURE_SSL_REDIRECT disabled - Render handles SSL at load balancer
