@@ -136,12 +136,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 50,
 }
 
-# CORS settings
-CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174',
-    cast=Csv()
-)
+# CORS settings - allow all origins for this prototype
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
