@@ -107,6 +107,20 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# WhiteNoise for production static file serving
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Serve React frontend build from static files (if built)
+import os as _os
+STATICFILES_DIRS = []
+_frontend_dist = BASE_DIR / 'frontend' / 'dist'
+if _os.path.isdir(_frontend_dist):
+    STATICFILES_DIRS.append(_frontend_dist)
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
